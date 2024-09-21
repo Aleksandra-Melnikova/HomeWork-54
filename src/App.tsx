@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import './App.css';
+import {useState} from "react";
+import Item from "./components/Item/Item.tsx";
+
+interface Iitem{
+    hasItem: boolean,
+    clicked: boolean,
+    id: number,
+}
+
+const App = () => {
+
+    const createItems =() =>{
+        let arrObj:Iitem[] = [];
+        for (let i = 0; i < 36; i++) {
+            const obj = {hasItem: false, clicked: false, id:i,}
+            arrObj.push(obj);
+        }
+        const random = Math.floor(Math.random() * 36);
+        arrObj[random].hasItem = true;
+        return arrObj;
+    };
+
+    const [items, setItems] = useState(createItems());
+    console.log(items);
+    const changeClickedById =(id:number)=>{
+        const copyItems = [...items];
+        const copyItem = {...items[id]};
+        copyItem.clicked = true;
+        copyItems[id] = copyItem ;
+        setItems(copyItems);
+    }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <div className="items">
+            {items.map((item) =>
+            <Item
+                key={item.id}
+                clicked={item.clicked}
+                hasItem={item.hasItem}
+                onChangeClickedById={ () => changeClickedById(item.id)} />
+        )}
+        </div>
+
+
     </>
   )
-}
+};
 
 export default App
