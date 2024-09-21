@@ -5,30 +5,5 @@
   text-align: center;
 }
 
-.items{
-  margin: 60px auto 20px;
-  display: flex;
-  width: 132px;
-  height: 132px;
-  flex-wrap: wrap;
-}
-.btn{
-  display: block;
-  margin: 20px auto 30px;
-  border: 1px solid lightskyblue;
-  background: lightblue;
-  color: black;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 3px;
-}
 
-.btn:hover{
-  background-color: blue;
-  color: white;
-}
-
-.btn:active{
-  box-shadow: 1px 1px 5px gray;
-}
 

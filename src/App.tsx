@@ -1,18 +1,17 @@
 
 import './App.css';
 import {useState} from "react";
-import Item from "./components/Item/Item.tsx";
+import Counter from "./components/Counter/Counter.tsx";
+import ButtonReset from "./components/Buttons/ButtonReset.tsx";
+import {IItem} from "./types";
+import PlayingField from "./components/PlayingField/PlayingField.tsx";
 
-interface Iitem{
-    hasItem: boolean,
-    clicked: boolean,
-    id: number,
-}
+
 
 const App = () => {
 
     const createItems =() =>{
-        let arrObj:Iitem[] = [];
+        let arrObj:IItem[] = [];
         for (let i = 0; i < 36; i++) {
             const obj = {hasItem: false, clicked: false, id:i,}
             arrObj.push(obj);
@@ -25,14 +24,13 @@ const App = () => {
     const [items, setItems] = useState(createItems());
     const[win,setWin] = useState(false);
 
-
-
     const changeClickedById =(id:number)=>{
         const copyItems = [...items];
         const copyItem = {...items[id]};
         if(win){
             copyItem.clicked = false;
-            copyItems[id] = copyItem ;
+            copyItems[id] = copyItem;
+            alert('You win! Press reset to play again');
             setItems(copyItems);
         } else{
             if(copyItem.hasItem){
@@ -50,8 +48,7 @@ const App = () => {
 
     };
 
-
-    const tries  = (items:Iitem[]) =>{
+    const tries  = (items:IItem[]) =>{
 
         const newArray: boolean[] = [];
         for(let i = 0; i < items.length; i++){
@@ -71,25 +68,15 @@ const App = () => {
         createItems();
         const copyItems = createItems();
         setItems(copyItems);
+        const copyWin = false;
+        setWin(copyWin);
     };
 
   return (
-    <> <div>
-        <div className="items">
-            {items.map((item) =>
-            <Item
-                key={item.id}
-                clicked={item.clicked}
-                hasItem={item.hasItem}
-                onChangeClickedById={ () => changeClickedById(item.id)}
-            />
-        )}
-        </div>
-        <span>Tries: {tries(items)} </span>
-        <button className='btn' type='button' onClick={reset}>Reset</button>
-    </div>
-
-
+    <>
+        <PlayingField items={items} changeClickedById={changeClickedById}/>
+        <Counter tries={tries(items)}/>
+        <ButtonReset reset={reset}/>
     </>
   )
 };

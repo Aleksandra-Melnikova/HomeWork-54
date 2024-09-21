@@ -1,0 +1,7 @@
+.items{
+    margin: 60px auto 20px;
+    display: flex;
+    width: 132px;
+    height: 132px;
+    flex-wrap: wrap;
+}

@@ -1,10 +1,7 @@
 import React from 'react';
+import {IProps} from "../../../types";
 
-interface IProps {
-    onChangeClickedById:React.MouseEventHandler,
-    hasItem: boolean,
-    clicked: boolean,
-}
+
 
 const Item:React.FC<IProps> = ({hasItem,  clicked, onChangeClickedById}) => {
     const itemStyle = {
