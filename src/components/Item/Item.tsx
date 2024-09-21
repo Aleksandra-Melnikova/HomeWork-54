@@ -19,9 +19,11 @@ const Item:React.FC<IProps> = ({hasItem,  clicked, onChangeClickedById}) => {
     } else {
         itemStyle.background = 'lightskyblue'
     }
+
+
     return (
         <div style={itemStyle} onClick={onChangeClickedById} >
-            {hasItem ? <span>O</span>: null}
+            {hasItem && clicked ? <span>o</span>: null}
         </div>
     );
 };

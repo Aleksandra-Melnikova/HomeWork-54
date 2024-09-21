@@ -30,10 +30,29 @@ const App = () => {
         copyItem.clicked = true;
         copyItems[id] = copyItem ;
         setItems(copyItems);
+    };
+
+
+
+    const tries  = (items:Iitem[]) =>{
+
+        const newArray: boolean[] = [];
+        for(let i = 0; i < items.length; i++){
+            newArray.push(items[i].clicked);
+        }
+
+        let counter = 0;
+        for(let i = 0; i < newArray.length; i++){
+            if(newArray[i]){
+                counter++;
+            }
+        }
+       return counter;
     }
 
+
   return (
-    <>
+    <> <div>
         <div className="items">
             {items.map((item) =>
             <Item
@@ -43,6 +62,8 @@ const App = () => {
                 onChangeClickedById={ () => changeClickedById(item.id)} />
         )}
         </div>
+        <span>Tries: {tries(items)} </span>
+    </div>
 
 
     </>
