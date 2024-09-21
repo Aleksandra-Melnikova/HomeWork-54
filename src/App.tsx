@@ -23,15 +23,32 @@ const App = () => {
     };
 
     const [items, setItems] = useState(createItems());
-    console.log(items);
+    const[win,setWin] = useState(false);
+
+
+
     const changeClickedById =(id:number)=>{
         const copyItems = [...items];
         const copyItem = {...items[id]};
-        copyItem.clicked = true;
-        copyItems[id] = copyItem ;
-        setItems(copyItems);
-    };
+        if(win){
+            copyItem.clicked = false;
+            copyItems[id] = copyItem ;
+            setItems(copyItems);
+        } else{
+            if(copyItem.hasItem){
+                copyItem.clicked = true;
+                copyItems[id] = copyItem ;
+                setItems(copyItems);
+                setWin((prevState) => !prevState);
+            }
+            else{
+                copyItem.clicked = true;
+                copyItems[id] = copyItem ;
+                setItems(copyItems);
+            }
+        }
 
+    };
 
 
     const tries  = (items:Iitem[]) =>{
@@ -50,6 +67,11 @@ const App = () => {
        return counter;
     }
 
+    const reset = () =>{
+        createItems();
+        const copyItems = createItems();
+        setItems(copyItems);
+    };
 
   return (
     <> <div>
@@ -59,10 +81,12 @@ const App = () => {
                 key={item.id}
                 clicked={item.clicked}
                 hasItem={item.hasItem}
-                onChangeClickedById={ () => changeClickedById(item.id)} />
+                onChangeClickedById={ () => changeClickedById(item.id)}
+            />
         )}
         </div>
         <span>Tries: {tries(items)} </span>
+        <button className='btn' type='button' onClick={reset}>Reset</button>
     </div>
 
 
