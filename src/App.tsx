@@ -1,19 +1,19 @@
 
 import './App.css';
-import {useState} from "react";
-import Counter from "./components/Counter/Counter.tsx";
-import ButtonReset from "./components/Buttons/ButtonReset.tsx";
-import {IItem} from "./types";
-import PlayingField from "./components/PlayingField/PlayingField.tsx";
+import {useState} from 'react';
+import Counter from './components/Counter/Counter.tsx';
+import ButtonReset from './components/Buttons/ButtonReset.tsx';
+import {IItem} from './types';
+import PlayingField from './components/PlayingField/PlayingField.tsx';
 
 
 
 const App = () => {
 
     const createItems =() =>{
-        let arrObj:IItem[] = [];
+        const arrObj:IItem[] = [];
         for (let i = 0; i < 36; i++) {
-            const obj = {hasItem: false, clicked: false, id:i,}
+            const obj = {hasItem: false, clicked: false, id:i,};
             arrObj.push(obj);
         }
         const random = Math.floor(Math.random() * 36);
@@ -62,7 +62,7 @@ const App = () => {
             }
         }
        return counter;
-    }
+    };
 
     const reset = () =>{
         createItems();
@@ -78,7 +78,7 @@ const App = () => {
         <Counter tries={tries(items)}/>
         <ButtonReset reset={reset}/>
     </>
-  )
+  );
 };
 
-export default App
+export default App;

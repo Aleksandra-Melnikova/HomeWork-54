@@ -1,7 +1,7 @@
 import React from 'react';
-import Item from "./Item/Item.tsx";
-import {IItem} from "../../types";
-import "../PlayingField/PlayingField.css";
+import Item from './Item/Item.tsx';
+import {IItem} from '../../types';
+import '../PlayingField/PlayingField.css';
 
 interface PlayingFieldProps {
     items: IItem[];

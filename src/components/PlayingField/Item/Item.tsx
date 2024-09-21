@@ -1,5 +1,5 @@
 import React from 'react';
-import {IProps} from "../../../types";
+import {IProps} from '../../../types';
 
 
 
@@ -9,12 +9,12 @@ const Item:React.FC<IProps> = ({hasItem,  clicked, onChangeClickedById}) => {
         height: '20px',
         background: 'lightskyblue',
         border: '1px solid black',
-    }
+    };
 
     if (clicked) {
         itemStyle.background = 'transparent' ;
     } else {
-        itemStyle.background = 'lightskyblue'
+        itemStyle.background = 'lightskyblue';
     }
 
 

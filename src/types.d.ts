@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface IProps {
     onChangeClickedById:React.MouseEventHandler,
@@ -11,3 +11,4 @@ export interface IItem{
     clicked: boolean,
     id: number,
 }
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../Buttons/ButtonReset.css";
+import '../Buttons/ButtonReset.css';
 
 interface Props {
     reset: () => void;
